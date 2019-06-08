@@ -160,7 +160,7 @@ foreach (object::all() as $object) {
             <select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="protocol">
                 <option value=""></option>
                 <?php
-                $protocols = json_decode('[{"id":800,"name":"EV1527"},{"id":801,"name":"EV1527_1"},{"id":808,"name":"PT2262"},{"id":816,"name":"OTI"},{"id":832,"name":"DOOYA"},{"id":1312,"name":"ATR"},{"id":1328,"name":"X10"},{"id":1360,"name":"EVF"},{"id":1392,"name":"DIO"},{"id":4872,"name":"B12"},{"id":4873,"name":"B12_1"},{"id":4880,"name":"GT7000"},{"id":4928,"name":"EQT"},{"id":4944,"name":"HCTEL"},{"id":4976,"name":"GSA"},{"id":9056,"name":"FLOR"},{"id":13152,"name":"AVD"},{"id":13155,"name":"BLYP0"},{"id":13920,"name":"RFY"}]');
+                $protocols = json_decode('[{"id":800,"name":"EV1527"},{"id":801,"name":"EV1527_1"},{"id":808,"name":"PT2262"},{"id":816,"name":"OTI"},{"id":832,"name":"DOOYA"},{"id":1312,"name":"ATR"},{"id":1328,"name":"X10"},{"id":1360,"name":"EVF"},{"id":1392,"name":"DIO"},{"id":4872,"name":"B12"},{"id":4873,"name":"B12_1"},{"id":4880,"name":"GT7000"},{"id":4928,"name":"EQT"},{"id":4944,"name":"HCTEL"},{"id":4976,"name":"GSA"},{"id":9056,"name":"FLOR"},{"id":9057,"name":"FLOX"},{"id":13152,"name":"AVD"},{"id":4915,"name":"MTH"},{"id":13155,"name":"BLYP0"},{"id":13920,"name":"RFY"}]');
                 foreach ($protocols as $proto) {
                     echo '<option value="'.$proto->id.'" id="select_protocol">'.$proto->name.'</option>';
                 }
