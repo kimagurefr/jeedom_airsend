@@ -7,5 +7,7 @@
 	"require" : "2.4",
 	"category" : "automation protocol",
 	"hasDependency" : false,
-	"hasOwnDeamon" : false
+	"hasOwnDeamon" : false,
+	"changelog" : "https://devmel.github.io/jeedom_airsend/#language#/changelog",
+	"documentation" : "https://devmel.github.io/jeedom_airsend/#language#/"
 }
