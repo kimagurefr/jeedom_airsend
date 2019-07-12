@@ -29,23 +29,24 @@ A ce stade votre appareil est connecté et vous devriez voir la température et 
 Pour ajouter des appareils sans fils il faut au préalable utiliser l'application mobile Android ou Iphone.
 
 Ensuite il y a 3 possibilités pour récupérer ces appareils : 
-#### - Ajout manuel de chaque télécommande avec le Protocole et l'Adresse
+> **Ajout manuel de chaque télécommande avec le Protocole et l'Adresse**
+>
+> Vous retrouvez ces informations en modifiant chaque télécommande dans l'application mobile. Cependant cette méthode ne fonctionne pas correctement avec les télécommandes 1-bouton.
 
-Vous retrouvez ces informations en modifiant chaque télécommande dans l'application mobile. Cependant cette méthode ne fonctionne pas correctement avec les télécommandes 1-bouton.
+> **Import d'un fichier**
+>
+> Depuis l'application mobile, accédez au menu "Paramètres" (en haut à droite), puis choisissez "Exporter". Le plus simple est de vous l'envoyer par mail, puis télécharger ce fichier et l'importer dans Jeedom.
 
-#### - Import d'un fichier
+> **Import mobile**
+>
+> L'import mobile est de loin la solution la plus simple.
+>- Dans Jeedom cliquez sur "Import mobile"
+>- Connectez votre mobile sur le réseau wifi en liaison avec votre Jeedom.
+>- Depuis l'application mobile, accédez au menu "Paramètres" (en haut à droite).
+>- Cliquez sur "Easy Scan", cela ouvre une application externe de scan de QRCode.
+>- Scannez le QRCode affiché dans Jeedom
+>- Acceptez l'avertissement de sécurité
 
-Depuis l'application mobile, accédez au menu "Paramètres" (en haut à droite), puis choisissez "Exporter". Le plus simple est de vous l'envoyer par mail, puis télécharger ce fichier et l'importer dans Jeedom.
-
-#### - Import mobile.
-
-L'import mobile est de loin la solution la plus simple.
-- Dans Jeedom cliquez sur "Import mobile"
-- Connectez votre mobile sur le réseau wifi en liaison avec votre Jeedom.
-- Depuis l'application mobile, accédez au menu "Paramètres" (en haut à droite).
-- Cliquez sur "Easy Scan", cela ouvre une application externe de scan de QRCode.
-- Scannez le QRCode affiché dans Jeedom
-- Acceptez l'avertissement de sécurité
 
 Vos appareils sont maintenant dans Jeedom, il vous reste à les "activer" et choisir votre "objet parent" pour le placement dans le "Dashboard".
 
