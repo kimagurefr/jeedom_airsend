@@ -154,13 +154,25 @@ foreach (object::all() as $object) {
             <input type="password" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="password" placeholder="password" autocomplete="0" />
         </div>
     </div>
+    <div class="form-group asPassword">
+        <label class="col-sm-3 control-label">{{Passerelle Internet}}</label>
+        <div class="col-sm-3">
+            <input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="gateway" placeholder="gateway" />
+        </div>
+    </div>
+    <div class="form-group asPassword">
+        <label class="col-sm-3 control-label">{{Adresse Secondaire}}</label>
+        <div class="col-sm-3">
+            <input type="input" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="failover" placeholder="failover" autocomplete="0" />
+        </div>
+    </div>
     <div class="form-group asProtocols">
         <label class="col-sm-3 control-label">{{Protocole}}</label>
         <div class="col-sm-3">
             <select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="protocol">
                 <option value=""></option>
                 <?php
-                $protocols = json_decode('[{"id":800,"name":"EV1527"},{"id":801,"name":"EV1527_1"},{"id":808,"name":"PT2262"},{"id":816,"name":"OTI"},{"id":832,"name":"DOOYA"},{"id":1312,"name":"ATR"},{"id":1328,"name":"X10"},{"id":1360,"name":"EVF"},{"id":1392,"name":"DIO"},{"id":4872,"name":"B12"},{"id":4873,"name":"B12_1"},{"id":4880,"name":"GT7000"},{"id":4928,"name":"EQT"},{"id":4944,"name":"HCTEL"},{"id":4976,"name":"GSA"},{"id":9056,"name":"FLOR"},{"id":9057,"name":"FLOX"},{"id":13152,"name":"AVD"},{"id":4915,"name":"MTH"},{"id":13155,"name":"BLYP0"},{"id":13920,"name":"RFY"}]');
+                $protocols = json_decode('[{"id":13921,"name":"ASA"},{"id":1312,"name":"ATR"},{"id":13152,"name":"AVD"},{"id":4872,"name":"B12"},{"id":4873,"name":"B12_1"},{"id":4896,"name":"B24"},{"id":13155,"name":"BLYP0"},{"id":1392,"name":"DIO"},{"id":832,"name":"DOOYA"},{"id":4928,"name":"EQT"},{"id":800,"name":"EV1527"},{"id":801,"name":"EV1527_1"},{"id":1360,"name":"EVF"},{"id":9056,"name":"FLOR"},{"id":9057,"name":"FLOX"},{"id":4976,"name":"GSA"},{"id":4880,"name":"GT7000"},{"id":4944,"name":"HCTEL"},{"id":25456,"name":"KLQ"},{"id":4915,"name":"MTH"},{"id":816,"name":"OTI"},{"id":808,"name":"PT2262"},{"id":13920,"name":"RFY"},{"id":25488,"name":"WSR"},{"id":1328,"name":"X10"}]');
                 foreach ($protocols as $proto) {
                     echo '<option value="'.$proto->id.'" id="select_protocol">'.$proto->name.'</option>';
                 }

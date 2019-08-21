@@ -144,6 +144,7 @@ class airsend extends eqLogic {
                     $eqLogic->setConfiguration('device_type', '0');
                     $eqLogic->setConfiguration('localip', $iface['localip']);
                     $eqLogic->setConfiguration('password', $iface['password']);
+                    $eqLogic->setConfiguration('gateway', '1');
                     $eqLogic->save();
                     if (method_exists($eqLogic, 'postAjax')) {
                         $eqLogic->postAjax();
@@ -206,6 +207,8 @@ class airsend extends eqLogic {
             $deviceType = intval($this->getConfiguration('device_type'));
             if($deviceType == 0){
                 $password = $this->getConfiguration('password');
+                $gateway = $this->getConfiguration('gateway');
+                $failover = $this->getConfiguration('failover');
             }else{
                 //Search password
                 $eqLogics = eqLogic::byType('airsend');
@@ -213,15 +216,25 @@ class airsend extends eqLogic {
                     $lip = $eqLogic->getConfiguration('localip');
                     if($lip == $localip){
                         $lpw = $eqLogic->getConfiguration('password');
-                        if(strlen($lpw)>0)
+                        if(strlen($lpw)>0){
                             $password = $lpw;
+                            $gateway = $eqLogic->getConfiguration('gateway');
+                            $failover = $eqLogic->getConfiguration('failover');
+                        }
                     }
                     if($password && $eqLogic->getIsEnable() <> 0)
                         break;
                 }
             }
-            if($password)
-                return "sp://".$password."@".$addr."/?timeout=9000";
+            if($password){
+                $str = "\"sp://".$password."@".$addr."/?timeout=9000";
+                $str .= "&gw=".$gateway;
+                if(strlen($failover)>0){
+                    $str .= "&rhost=".$failover;
+                }
+                $str .= "\"";
+                return $str;
+            }
         }
         return false;
     }
