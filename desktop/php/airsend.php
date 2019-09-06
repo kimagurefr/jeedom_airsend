@@ -24,7 +24,7 @@ foreach ($eqLogics as $eqLogic) {
    </div>
 
 <div class="col-lg-10 col-md-9 col-sm-8 eqLogicThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
-    <legend>{{Mes appareils}}</legend>
+    <legend><i class="fa fa-cog"></i> {{Gestion}}</legend>
     <div class="eqLogicThumbnailContainer">
         <div class="cursor eqLogicAction" data-action="add" style="text-align: center; background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
             <i class="fa fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
@@ -46,6 +46,10 @@ foreach ($eqLogics as $eqLogic) {
             <br>
             <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676">{{Configuration}}</span>
         </div>
+    </div>
+    
+    <legend><i class="fa fa-table"></i>  {{Mes appareils}}</legend>
+    <div class="eqLogicThumbnailContainer">
         <?php
         foreach ($eqLogics as $eqLogic) {
             $opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
