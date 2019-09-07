@@ -542,7 +542,20 @@ class airsendCmd extends cmd {
                                 $command = $opt;
                             }
                         }
-                        airsendCmd::writeProtocol($asAddr, $protocol, $address, $command);
+                        for($i=0;$i<3;$i++){
+                            try{
+                                airsendCmd::writeProtocol($asAddr, $protocol, $address, $command);
+                            } catch (Exception $e) {
+                                if (strpos($e->getMessage(), "Another client locked the device") == true) {
+                                    sleep(3);
+                                    if($i >= 2){
+                                        throw new Exception('Erreur : la pool d\'actions est pleine');
+                                    }
+                                }else{
+                                    throw $e;
+                                }
+                            }
+                        }
                     }else{
                         throw new Exception('Erreur de configuration : protocole invalide');
                     }
