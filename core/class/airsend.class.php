@@ -551,10 +551,12 @@ class airsendCmd extends cmd {
                                     if($i >= 2){
                                         throw new Exception('Erreur : la pool d\'actions est pleine');
                                     }
+                                    continue;
                                 }else{
                                     throw $e;
                                 }
                             }
+                            break;
                         }
                     }else{
                         throw new Exception('Erreur de configuration : protocole invalide');
