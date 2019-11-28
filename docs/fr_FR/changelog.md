@@ -1,3 +1,7 @@
+28/11/2019
+
+Debian Buster + Jeedom V4
+
 12/10/2019
 
 Protocol_MVO

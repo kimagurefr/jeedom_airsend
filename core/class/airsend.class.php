@@ -489,10 +489,7 @@ class airsendCmd extends cmd {
     /*     * ***********************Methode static*************************** */
     public static function readSensors($device){
         $ret = false;
-        $cmd_path = dirname(__FILE__) . '/../../ressources/scripts/`dpkg --print-architecture`/AirSendWrite';
-        $command = $cmd_path . " ". $device;
-        $request_shell = new com_shell("sudo" . " " . $command . ' 2>&1');
-        $result = $request_shell->exec();
+		$result = airsendCmd::AirSendWrite($device);
         preg_match('/T: ([0-9\.]+) ; I: ([0-9]+)\nOK/', $result, $matches, PREG_OFFSET_CAPTURE);
         if(count($matches) > 2){
             $ret = array("tmp" => "".floatval($matches[1][0]), "ill" => "".intval($matches[2][0]));
@@ -501,13 +498,28 @@ class airsendCmd extends cmd {
     }
 
     public static function writeProtocol($device, $protocol, $address, $command){
-        $ret = false;
-        $cmd_path = dirname(__FILE__) . '/../../ressources/scripts/`dpkg --print-architecture`/AirSendWrite';
-        $command = $cmd_path . " ". $device." ".intval($protocol).' '.$address.' '.intval($command);
-        $request_shell = new com_shell("sudo" . " " . $command . ' 2>&1');
-        $request_shell->exec();
+        $command = $device." ".intval($protocol).' '.$address.' '.intval($command);
+		airsendCmd::AirSendWrite($command);
     }
 
+    private static function AirSendWrite($params){
+		$result = null;
+        $cmd_path = dirname(__FILE__) . '/../../ressources/scripts/`dpkg --print-architecture`/AirSendWrite';
+        try{
+			$request_shell = new com_shell($cmd_path . " " . $params . ' 2>&1');
+			$result = $request_shell->exec();
+        } catch (Exception $e) {
+			if (strpos($e->getMessage(), "command not found") == true || strpos($e->getMessage(), "Permission denied") == true) {
+				$request_shell = new com_shell("sudo chmod 777 " . $cmd_path . ' 2>&1');
+				$request_shell->exec();
+				$request_shell = new com_shell($cmd_path . " " . $params . ' 2>&1');
+				$result = $request_shell->exec();
+			}else{
+                throw $e;
+			}
+		}
+		return $result;
+	}
 
     /*     * *********************Methode d'instance************************* */
 
