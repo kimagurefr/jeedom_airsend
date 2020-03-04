@@ -109,6 +109,9 @@ class airsend extends eqLogic {
                                 if(isset($device['opt'])){
                                     $eqLogic->setConfiguration('opt', $device['opt']);
                                 }
+                                if(isset($device['mac'])){
+                                    $eqLogic->setConfiguration('mac', $device['mac']);
+                                }
                                 $eqLogic->save();
                                 if (method_exists($eqLogic, 'postAjax')) {
                                     $eqLogic->postAjax();
@@ -497,8 +500,11 @@ class airsendCmd extends cmd {
         return $ret;
     }
 
-    public static function writeProtocol($device, $protocol, $address, $command){
+    public static function writeProtocol($device, $protocol, $address, $command, $mac = null){
         $command = $device." ".intval($protocol).' '.$address.' '.intval($command);
+        if($mac != null){
+            $command .= ' '.intval($mac);
+        }
 		airsendCmd::AirSendWrite($command);
     }
 
@@ -548,6 +554,11 @@ class airsendCmd extends cmd {
                     if($protocol > 0){
                         $address = intval($eqLogic->getConfiguration('address'));
                         $command = $this->getValue();
+                        $mac = null;
+                        $maccfg = $eqLogic->getConfiguration('mac', null);
+                        if(isset($maccfg)){
+                            $mac = $maccfg;
+                        }
                         if($command == 6){
                             $opt = $eqLogic->getConfiguration('opt', null);
                             if(isset($opt)){
@@ -556,7 +567,7 @@ class airsendCmd extends cmd {
                         }
                         for($i=0;$i<3;$i++){
                             try{
-                                airsendCmd::writeProtocol($asAddr, $protocol, $address, $command);
+                                airsendCmd::writeProtocol($asAddr, $protocol, $address, $command, $mac);
                             } catch (Exception $e) {
                                 if (strpos($e->getMessage(), "Another client locked the device") == true) {
                                     sleep(3);
