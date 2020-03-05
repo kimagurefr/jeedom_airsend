@@ -116,7 +116,7 @@ $('#bt_import').on('click', function () {
                 $('#list_import').append($("<li style=\"color:red;\">").text(name+' : Erreur, ce nom existe déjà'));
             }else{
                 devices_name.push(name);
-                jeedom.eqLogic.save({"type":"airsend", "eqLogics":[{"name":name, "configuration":{"device_type":data.devices[i].type,"localip":localip,"protocol":data.devices[i].pid,"address":data.devices[i].addr, "opt":data.devices[i].opt}}]})
+                jeedom.eqLogic.save({"type":"airsend", "eqLogics":[{"name":name, "configuration":{"device_type":data.devices[i].type,"localip":localip,"protocol":data.devices[i].pid,"address":data.devices[i].addr, "opt":data.devices[i].opt, "mac":data.devices[i].mac}}]})
                 $('#list_import').append($("<li style=\"color:green;\">").text(name+' : Ajouté '));
             }
         }
